@@ -44,7 +44,7 @@ export default function Navbar() {
     
     if (link === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.pushState(null, '', '/');
+      window.history.pushState(null, '', import.meta.env.BASE_URL);
       return;
     }
 
@@ -52,7 +52,7 @@ export default function Navbar() {
     if (element) {
       const top = element.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: 'smooth' });
-      window.history.pushState(null, '', `/${link}`);
+      window.history.pushState(null, '', `${import.meta.env.BASE_URL}${link}`);
     }
   };
 
@@ -65,7 +65,7 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a 
-          href="/" 
+          href={import.meta.env.BASE_URL} 
           onClick={(e) => handleNavClick(e, 'home')}
           className="group relative flex items-center gap-1"
         >
@@ -81,7 +81,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <li key={link}>
               <a
-                href={link === 'home' ? '/' : `/${link}`}
+                href={link === 'home' ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}${link}`}
                 onClick={(e) => handleNavClick(e, link)}
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 capitalize ${
                   activeSection === link
@@ -138,7 +138,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <li key={link}>
               <a
-                href={link === 'home' ? '/' : `/${link}`}
+                href={link === 'home' ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}${link}`}
                 onClick={(e) => handleNavClick(e, link)}
                 className={`block px-4 py-3 rounded-xl transition-all duration-300 capitalize text-sm font-medium ${
                   activeSection === link

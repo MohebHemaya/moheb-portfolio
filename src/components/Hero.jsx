@@ -54,14 +54,14 @@ export default function Hero() {
           <MagneticWrapper strength={15}>
             <Button asChild className="btn-premium text-white border-0 rounded-xl text-sm h-12 px-8 w-full sm:w-auto">
               <a 
-                href="/projects" 
+                href={`${import.meta.env.BASE_URL}projects`} 
                 onClick={(e) => {
                   e.preventDefault();
                   const element = document.getElementById('projects');
                   if (element) {
                     const top = element.getBoundingClientRect().top + window.scrollY - 80;
                     window.scrollTo({ top, behavior: 'smooth' });
-                    window.history.pushState(null, '', '/projects');
+                    window.history.pushState(null, '', `${import.meta.env.BASE_URL}projects`);
                   }
                 }}
               >
@@ -72,7 +72,7 @@ export default function Hero() {
           </MagneticWrapper>
           <MagneticWrapper strength={15}>
             <Button asChild variant="outline" className="h-12 px-8 rounded-xl border-primary-500/30 text-primary-300 hover:bg-primary-500/10 hover:text-white hover:border-primary-400/50 transition-all duration-300 bg-transparent w-full sm:w-auto">
-              <a href="/Moheb-Hemaya-CV.pdf" download>
+              <a href={`${import.meta.env.BASE_URL}Moheb-Hemaya-CV.pdf`} download>
                 <FiDownload className="mr-2 w-4 h-4" />
                 {t('hero.cta_cv')}
               </a>
