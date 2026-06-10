@@ -23,6 +23,19 @@ function RevealOnScroll() {
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const path = window.location.pathname.replace(import.meta.env.BASE_URL, '').replace(/^\/|\/$/g, '');
+    if (path) {
+      setTimeout(() => {
+        const element = document.getElementById(path);
+        if (element) {
+          const top = element.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }, 300);
+    }
+  }, []);
   return null;
 }
 
