@@ -54,6 +54,19 @@ export default function Projects() {
       .catch(() => setLoadingRepos(false));
   }, []);
 
+  // Re-run intersection observer for newly filtered elements
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      }),
+      { threshold: 0.1 }
+    );
+    const elements = document.querySelectorAll('#projects .reveal:not(.visible)');
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [filtered]);
+
   return (
     <section id="projects" className="relative py-28 overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary-500/20 to-transparent" />
